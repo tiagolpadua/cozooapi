@@ -2,6 +2,8 @@ var db = require("../../config/database");
 
 var api = {};
 
+var token = "aksdfyiuKUHYkasfkUYRn";
+
 api.adiciona = function(req, res) {
   var animal = req.body;
   console.log("Adicionando: ");
@@ -62,6 +64,21 @@ api.removeLogicamente = function(req, res) {
       res.status(200).end();
     }
   );
+};
+
+api.login = function(req, res) {
+  var dados = req.body;
+
+  console.log("logando: ");
+  console.log(req.body);
+
+  if (dados.usuario === "jose" && dados.senha === "123456") {
+    res.json({
+      token: token
+    });
+  } else {
+    res.status(403).end();
+  }
 };
 
 module.exports = api;

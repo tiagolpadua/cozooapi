@@ -17,6 +17,8 @@ module.exports = function(app) {
     .route("/v1/animais/exclusaologica/:animalId")
     .delete(api.removeLogicamente);
 
+  app.route("/v1/login").post(api.login);
+
   app.all("/*", function(req, res) {
     res.sendFile(path.join(app.get("publicPath"), "index.html"));
   });
