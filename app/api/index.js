@@ -31,12 +31,19 @@ api.busca = function(req, res) {
 
 api.atualiza = function(req, res) {
   console.log("Parâmetro recebido:" + req.params.animalId);
+
+  if (!req.headers.authorization) {
+    return res.status(403).end();
+  }
+
   db.update({ _id: req.params.animalId }, req.body, function(err, numReplaced) {
     if (err) return console.log(err);
-    if (numReplaced) res.status(200).end();
-    res.status(500).end();
-    console.log("Atualizado com sucesso: " + req.body._id);
-    res.status(200).end();
+    if (numReplaced) {
+      console.log("Atualizado com sucesso: " + req.body._id);
+      res.json(req.body);
+    } else {
+      res.status(500).end();
+    }
   });
 };
 
