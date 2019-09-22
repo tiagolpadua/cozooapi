@@ -11,7 +11,7 @@ api.adiciona = function(req, res) {
   console.log(req.headers);
 
   if (!req.headers.authorization) {
-    res.status(403).end();
+    return res.status(403).end();
   }
 
   delete animal._id;
