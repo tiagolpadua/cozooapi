@@ -8,6 +8,12 @@ api.adiciona = function(req, res) {
   var animal = req.body;
   console.log("Adicionando: ");
   console.log(req.body);
+  console.log(req.headers);
+
+  if (!req.headers.authorization) {
+    res.status(403).end();
+  }
+
   delete animal._id;
   db.insert(animal, function(err, newDoc) {
     if (err) return console.log(err);
