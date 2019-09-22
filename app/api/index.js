@@ -12,7 +12,7 @@ api.adiciona = function(req, res) {
   db.insert(animal, function(err, newDoc) {
     if (err) return console.log(err);
     console.log("Adicionado com sucesso: " + newDoc._id);
-    res.json(newDoc._id);
+    res.json(newDoc);
   });
 };
 
